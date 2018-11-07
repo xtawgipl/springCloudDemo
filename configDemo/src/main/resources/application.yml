@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: config-demo
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${user.dir}\configDemo\src\main\resources\config
+# http://localhost:8080/config/test/default
+server:
+  port: 8080
+# http://localhost:9091/actuator
+management:
+  server:
+    port: 9091
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    shutdown:
+      enabled: true
+    restart:
+      enabled: true
+    pause:
+      enabled: true
+    resume:
+      enabled: true
