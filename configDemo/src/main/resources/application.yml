@@ -5,7 +5,7 @@ spring:
     config:
       server:
         git:
-          uri: ${user.dir}\configDemo\src\main\resources\config
+          uri: ${user.dir}\configDemo\src\main\resources\config\
 # http://localhost:8080/config/test/default
 server:
   port: 8080
