@@ -5,11 +5,14 @@ spring:
     config:
       server:
         git:
-          uri: ${user.dir}\configDemo\src\main\resources\config\
-# http://localhost:8080/config/test/default
+          uri: https://github.com/xtawgipl/springCloudDemo.git
+          search-paths: /configDemo/src/main/resources/config/
+#          username:
+#          password:
+# 查看配置 http://localhost:8080/config/dev/master
 server:
   port: 8080
-# http://localhost:9091/actuator
+# 查看监控信息 http://localhost:9091/actuator
 management:
   server:
     port: 9091
