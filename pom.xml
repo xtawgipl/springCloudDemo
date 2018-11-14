@@ -19,6 +19,8 @@
 
   <modules>
     <module>configDemo</module>
+    <module>serviceDiscoveryDemo</module>
+    <module>ServiceDiscoveryClientDemo</module>
   </modules>
 
   <url>http://www.example.com</url>

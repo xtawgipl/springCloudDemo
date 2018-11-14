@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: server-discovery-client-demo
+  cloud:
+    zookeeper:
+      connect-string: 119.29.26.226:2181
+server:
+  port: 8085
