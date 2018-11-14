@@ -1,5 +1,7 @@
 package com.spring.cloud.demo.config;
 
+import com.spring.cloud.demo.annotion.CustomizedLoadBalanced;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
@@ -15,8 +17,13 @@ import java.util.List;
 @Configuration
 public class Config {
 
-    @Bean(name = "restTemplate")
-    public RestTemplate buildRestTemplate(){
+    /**
+     * 可以用 注解 + Autowired 注入
+     * 也可以用resource 用name 指定注入
+     */
+    @CustomizedLoadBalanced
+    @Bean/*(name = "restTemplate")*/
+    public RestTemplate restTemplate(){
         return new RestTemplate();
     }
 

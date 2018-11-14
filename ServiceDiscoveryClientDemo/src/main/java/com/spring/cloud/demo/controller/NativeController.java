@@ -1,5 +1,6 @@
 package com.spring.cloud.demo.controller;
 
+import com.spring.cloud.demo.annotion.CustomizedLoadBalanced;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -24,7 +25,9 @@ public class NativeController {
     @Autowired
     private DiscoveryClient discoveryClient;
 
-    @Resource(name = "restTemplate")
+//    @Resource(name = "restTemplate")
+    @Autowired
+    @CustomizedLoadBalanced
     private RestTemplate restTemplate;
 
     @Resource(name = "lbRestTemplate")
