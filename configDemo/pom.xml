@@ -12,7 +12,7 @@
     <artifactId>configDemo</artifactId>
 
     <name>configDemo</name>
-    <url>http://www.example.com</url>
+    <description>配置中心</description>
 
     <dependencies>
         <dependency>

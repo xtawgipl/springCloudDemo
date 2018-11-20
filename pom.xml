@@ -20,7 +20,8 @@
   <modules>
     <module>configDemo</module>
     <module>serviceDiscoveryDemo</module>
-    <module>ServiceDiscoveryClientDemo</module>
+    <module>applicationClientDemo</module>
+    <module>circuitBreakerDemo</module>
   </modules>
 
   <url>http://www.example.com</url>

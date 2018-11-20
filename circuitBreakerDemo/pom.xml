@@ -9,19 +9,15 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ServiceDiscoveryClientDemo</artifactId>
+    <artifactId>circuitBreakerDemo</artifactId>
 
-    <name>ServiceDiscoveryClientDemo</name>
-    <url>http://www.example.com</url>
+    <name>circuitBreakerDemo</name>
+    <description>熔断(发生在)服务端</description>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-ribbon</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
