@@ -22,6 +22,7 @@
     <module>serviceDiscoveryDemo</module>
     <module>applicationClientDemo</module>
     <module>circuitBreakerDemo</module>
+      <module>applicationFeignDemo</module>
   </modules>
 
   <url>http://www.example.com</url>

@@ -3,8 +3,7 @@ package com.spring.cloud.demo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-
-import javax.swing.*;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author zhangjj
@@ -12,9 +11,10 @@ import javax.swing.*;
  **/
 @SpringBootApplication
 @EnableDiscoveryClient
-public class ServiceDiscoveryClientApplication {
+@EnableScheduling
+public class ClientApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ServiceDiscoveryClientApplication.class);
+        SpringApplication.run(ClientApplication.class);
     }
 }

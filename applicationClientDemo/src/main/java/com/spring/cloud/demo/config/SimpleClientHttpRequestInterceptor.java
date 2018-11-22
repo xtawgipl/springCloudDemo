@@ -12,6 +12,7 @@ import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.lang.Nullable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
 import org.springframework.util.StringUtils;
@@ -21,8 +22,10 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * restTemplate 拦截器
@@ -37,10 +40,22 @@ public class SimpleClientHttpRequestInterceptor implements ClientHttpRequestInte
     @Autowired
     private DiscoveryClient discoveryClient;
 
+    private ConcurrentHashMap<String, List<ServiceInstance>> servicesMap = new ConcurrentHashMap<>();
+
+    @Scheduled(fixedRate = 2 * 1000)
+    public void loadConfig() {
+        logger.info("开始更新服务信息。。。");
+        List<String> services = discoveryClient.getServices();
+        for(String service : services){
+            List<ServiceInstance> instances = discoveryClient.getInstances(service);
+            servicesMap.put(service, instances);
+        }
+    }
+
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
         System.out.println("SimpleClientHttpRequestInterceptor.......");
-        List<ServiceInstance> instances = discoveryClient.getInstances("service-discovery-demo");
+        List<ServiceInstance> instances = new ArrayList<>(servicesMap.get("service-discovery-demo"));//写时拷贝
         Random random = new Random();
         int index = random.nextInt(instances.size());
         String address = instances.get(index).getUri().toURL().toString() + request.getURI().toString();
@@ -50,8 +65,6 @@ public class SimpleClientHttpRequestInterceptor implements ClientHttpRequestInte
         SimpleClientHttpResponse clientHttpResponse = new SimpleClientHttpResponse(urlConnection);
         return clientHttpResponse;
     }
-
-
 
     class SimpleClientHttpResponse extends AbstractClientHttpResponse {
 
